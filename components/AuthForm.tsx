@@ -69,7 +69,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 control={form.control}
                 name="name"
                 label="name"
-                placeholder="your name"
+                placeholder="Your name"
                 type="text"
               />
             )}
@@ -77,14 +77,14 @@ const AuthForm = ({ type }: { type: FormType }) => {
               control={form.control}
               name="email"
               label="email"
-              placeholder="your email"
+              placeholder="Your email"
               type="email"
             />
             <FormField
               control={form.control}
               name="password"
               label="password"
-              placeholder="your Password"
+              placeholder="Your Password"
               type="password"
             />
             <Button type="submit" className="btn">
