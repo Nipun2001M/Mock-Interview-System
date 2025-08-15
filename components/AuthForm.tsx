@@ -42,7 +42,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
       } else {
         toast.success("Signed in sucessfully!");
         console.log("SIGN IN", values);
-        router.push('/')
+        router.push("/");
       }
     } catch (error) {
       console.log(error);
@@ -107,3 +107,4 @@ const AuthForm = ({ type }: { type: FormType }) => {
 };
 
 export default AuthForm;
+
