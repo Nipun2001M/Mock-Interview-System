@@ -21,10 +21,10 @@ export async function signUp(parms: SignUpParams) {
       email,
     });
 
-    return{
-        sucess:true,
-        message:"Account Created Sucessfully! please sign in."
-    }
+    return {
+      sucess: true,
+      message: "Account Created Sucessfully! please sign in.",
+    };
   } catch (e: any) {
     console.log("ERROR : Creating user", e);
 
@@ -43,23 +43,21 @@ export async function signUp(parms: SignUpParams) {
 
 export async function signIn(params: SignInParams) {
   const { email, idToken } = params;
-  try{
-    const userRecord=await auth.getUserByEmail(email)
-    if (!userRecord){
-        return{
-            sucess:false,
-            message:'User Not Exist, Create Account'
-        }
+  try {
+    const userRecord = await auth.getUserByEmail(email);
+    if (!userRecord) {
+      return {
+        sucess: false,
+        message: "User Not Exist, Create Account",
+      };
     }
-    await setSessionCookie(idToken)
-
-  }catch(e){
-    console.log('Error : Error in SignIn',e)
-    return{
-        sucess:false,
-        message:'Failed To log in'
-
-    }
+    await setSessionCookie(idToken);
+  } catch (e) {
+    console.log("Error : Error in SignIn", e);
+    return {
+      sucess: false,
+      message: "Failed To log in",
+    };
   }
 }
 
@@ -75,4 +73,36 @@ export async function setSessionCookie(idToken: string) {
     path: "/",
     sameSite: "lax",
   });
+}
+
+export async function getCurrentUser(): Promise<User | null> {
+  const cookieStore = await cookies();
+
+  const sessionCookie = cookieStore.get("session")?.value;
+
+  try {
+    const decodedClaims = await auth.verifySessionCookie(sessionCookie!, true);
+    const userRecord = await db
+      .collection("users")
+      .doc(decodedClaims.uid)
+      .get();
+
+    if (!userRecord.exists) {
+      return null;
+    }
+
+    return {
+      ...userRecord.data(),
+      id: userRecord.id,
+    } as User;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+}
+
+export async function isAuthenticated() {
+  const user = await getCurrentUser();
+
+  return !!user;
 }
