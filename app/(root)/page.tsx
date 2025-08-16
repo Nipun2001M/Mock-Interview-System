@@ -10,9 +10,9 @@ const page = () => {
     <>
       <section className="card-cta">
         <div className="flex flex-col gap-6">
-          <h2>Get Interview-Ready With AI-Powered Practise and Feedback</h2>
+          <h2>Get Interview-Ready With AI-Powered Practice and Feedback</h2>
           <p className="text-lg">
-            Practise On Real Interview Questions and Get Real FeedBack
+            Practice On Real Interview Questions and Get Real FeedBack
           </p>
           <Button asChild className="btn-primary max-sm:w-full">
             <Link href="/interview">Start An Interview</Link>
