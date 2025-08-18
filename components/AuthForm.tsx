@@ -113,7 +113,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
               control={form.control}
               name="email"
               label="email"
-              placeholder="Your email"
+              placeholder="Your Email"
               type="email"
             />
             <FormField
@@ -124,7 +124,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
               type="password"
             />
             <Button type="submit" className="btn">
-              {isSign ? "Sign-In" : "Create Account"}
+              {isSign ? "Sign-In" : "Create New Account"}
             </Button>
           </form>
         </Form>
