@@ -1,1 +1,1 @@
-half doen due to paid version of vapi
+half done due to paid version of vapi
